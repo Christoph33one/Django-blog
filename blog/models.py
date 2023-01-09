@@ -27,7 +27,6 @@ class Post(models.Model):
         # A good idea to use the __str__ method. It returns a string
         # representation of an object.
 
-
     def __str__(self):
         return self.title
 
