@@ -21,6 +21,7 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='blogpost_like', blank=True)
+    # this above creates a table like structure for the admin user.
 
     class Meta:
         ordering = ["-created_on"]
@@ -29,9 +30,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+        # returns the title name
 
     def number_of_likes(self):
         return self.likes.count()
+        # returns how manys likes
 
 
 class Comment(models.Model):
@@ -45,6 +48,8 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ["created_on"]
+        # returns date of created comment
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+        # returns comment content and name

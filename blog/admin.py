@@ -3,7 +3,7 @@ from .models import Post, Comment
 from django_summernote.admin import SummernoteModelAdmin
 
 
-# Register your models here.
+# Register your models here. This is created for the admin user to see only!
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
     list_display = ('title', 'slug', 'status', 'created_on')
