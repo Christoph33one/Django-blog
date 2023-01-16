@@ -50,14 +50,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'crispy_forms',
     'blog',
 
 ]
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
+
 LOGOUT_REDIRECT_URL = '/'
-# redirects user to the home page after login!
+# redirects user to the home page after login / logout!
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 # to prevent 500 errors when loggin on or registering!
