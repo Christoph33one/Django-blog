@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse  # added reverse with httpResponceRedirect
 from django.views import generic, View
+from django.http import HttpResponseRedirect
+# redirects to postdetail page to see the liked results.
 from .models import Post
 from .forms import CommentForm
 
@@ -78,3 +80,20 @@ class PostDetail(View):
                 "liked": liked
             },
         )
+
+
+# the view is for the user to toggle and like a comment
+class Postlike(View):
+
+    def post(self, request, slug):
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.likes.filter(id-request.user.id).exists():
+            post.like.remove(request.user)
+        else:
+            post.like.add(request.user)
+
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+        # the argument is slug. so that we know what post to load.
+        # so now when the user likes or unlikes a post, it will reoload the
+        # page and show a like if added!
