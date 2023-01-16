@@ -1,6 +1,8 @@
 <!--step 2 for creating views (add a template)-->
 {% extends 'base.html' %} {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
@@ -77,7 +79,27 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
-                <!-- For later -->
+                <!--for later-->
+                {% if commented %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting approval
+                </div>
+                <!--the above will tell the user, their comment is waiting approval!-->
+                {% else %}
+
+                {% if user.is_authenticated %}
+                <!-- This if statement will show the comment, Only if the comment is authenticated by admin-->
+                <!--Important feature to have!!-->
+                <h3>leave a Comment:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" style="margin-top: 1.3em;">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <!--Add csrf token to any form you create, it is important for Security!!-->
+                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                </form>
+                {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
