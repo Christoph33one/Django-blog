@@ -74,7 +74,7 @@ class PostDetail(View):
                 "post": post,
                 "comments": comments,
                 "commented": True,
-                # commented = true, tells the user
+                # commented = True, tells the user
                 # their comment is waiting approval!
                 "comment_form": comment_form,
                 "liked": liked
@@ -89,7 +89,7 @@ class PostLike(View):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
-             # has been liked
+            # has been liked
         else:
             post.likes.add(request.user)
             # hasn’t been liked
