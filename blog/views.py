@@ -83,15 +83,16 @@ class PostDetail(View):
 
 
 # the view is for the user to toggle and like a comment
-class Postlike(View):
+class PostLike(View):
 
-    def post(self, request, slug):
+    def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
-
-        if post.likes.filter(id-request.user.id).exists():
-            post.like.remove(request.user)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+             # has been liked
         else:
-            post.like.add(request.user)
+            post.likes.add(request.user)
+            # hasn’t been liked
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
         # the argument is slug. so that we know what post to load.
