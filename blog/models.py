@@ -21,7 +21,7 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='blogpost_like', blank=True)
-    # this above creates a table like structure for the admin user.
+    # this above creates a table like structure for the user to add a comment.
 
     class Meta:
         ordering = ["-created_on"]

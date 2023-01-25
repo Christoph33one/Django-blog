@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# creating ULR to link up views and template. 
+# creating ULR to link up views and template.
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("blog.urls"), name="blog-urls"),
